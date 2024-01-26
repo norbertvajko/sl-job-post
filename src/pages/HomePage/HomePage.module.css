@@ -1,0 +1,15 @@
+.posts-container {
+    padding: 0 60px !important;
+}
+
+.pagination-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 0;
+    z-index: 99999;
+}
