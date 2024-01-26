@@ -32,6 +32,6 @@ Follow these steps to install the necessary dependencies:
 
 5. **Run the application**
 
-   npm start 
+   npm run dev 
 
-6. **Have fun**   
+6. **Have fun!**   
