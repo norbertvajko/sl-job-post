@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { Grid, Pagination, Fade } from '@mui/material';
-import { fetchPosts } from '../../api/postApi';
 import { POSTS_PER_PAGE } from '../../api/postApi';
 import { ParallaxCard } from '../../components/ParallaxCard/ParallaxCard';
 import { ParallaxCardSkeleton } from '../../components/ParallaxCard/ParallaxCardSkeleton/ParallaxCardSkeleton';
@@ -10,7 +8,9 @@ import { useWindowWidth } from '../../hooks/useWindowWidth';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import { BREAKPOINTS } from '../../constants/breakpoints/breakpoints';
+import { useGetPosts } from '../../hooks/useGetPosts';
 import styles from "./HomePage.module.css";
+
 
 const INITIAL_PAGES = 1;
 
@@ -32,13 +32,7 @@ export const HomePage = () => {
 
   }, []);
 
-  const { data: posts, isLoading, error } = useQuery(
-    ['posts', currentPage],
-    () => fetchPosts(currentPage),
-    {
-      staleTime: Infinity,
-    }
-  );
+  const { data: posts, isLoading, error } = useGetPosts(currentPage);
 
   const totalPages = posts?.headers['x-wp-totalpages'];
 

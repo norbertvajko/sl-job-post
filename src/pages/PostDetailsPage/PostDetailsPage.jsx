@@ -1,25 +1,18 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useQuery } from 'react-query';
 import { Paper, IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useSpring, animated } from 'react-spring';
-import { fetchPostById } from '../../api/postApi';
 import { PostDetailsCard } from '../../components/PostDetailsCard/PostDetailsCard';
 import { APP_ROUTES } from '../../constants/routes/routes';
 import { PostDetailsPageSkeleton } from './PostDetailsPageSkeleton/PostDetailsPageSkeleton';
+import { useGetPostById } from '../../hooks/useGetPosts';
 
 export const PostDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const { data: post, isLoading } = useQuery(
-    ['post', id],
-    () => fetchPostById(id),
-    {
-      staleTime: Infinity, 
-    }
-  );
+  const { data: post, isLoading, error } = useGetPostById(id);
 
   const backArrowBtnStyle = {
     position: 'fixed',
