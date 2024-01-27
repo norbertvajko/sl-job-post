@@ -7,6 +7,7 @@ import { PostDetailsCard } from '../../components/PostDetailsCard/PostDetailsCar
 import { APP_ROUTES } from '../../constants/routes/routes';
 import { PostDetailsPageSkeleton } from './PostDetailsPageSkeleton/PostDetailsPageSkeleton';
 import { useGetPostById } from '../../hooks/useGetPosts';
+import { ErrorMessage } from '../../components/ErrorMessage/ErrorMessage';
 
 export const PostDetailPage = () => {
   const { id } = useParams();
@@ -37,6 +38,10 @@ export const PostDetailPage = () => {
 
   if (isLoading) {
     return <PostDetailsPageSkeleton />;
+  }
+
+  if (error) {
+    return <ErrorMessage error={error.message} />
   }
 
   return (

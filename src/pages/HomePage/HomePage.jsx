@@ -3,14 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { Grid, Pagination, Fade } from '@mui/material';
 import { POSTS_PER_PAGE } from '../../api/postApi';
 import { ParallaxCard } from '../../components/ParallaxCard/ParallaxCard';
+import { Alert } from '../../components/Alert/Alert';
 import { ParallaxCardSkeleton } from '../../components/ParallaxCard/ParallaxCardSkeleton/ParallaxCardSkeleton';
 import { useWindowWidth } from '../../hooks/useWindowWidth';
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
 import { BREAKPOINTS } from '../../constants/breakpoints/breakpoints';
 import { useGetPosts } from '../../hooks/useGetPosts';
+import { ErrorMessage } from '../../components/ErrorMessage/ErrorMessage';
 import styles from "./HomePage.module.css";
-
 
 const INITIAL_PAGES = 1;
 
@@ -44,6 +43,10 @@ export const HomePage = () => {
     return <ParallaxCardSkeleton numOfCards={POSTS_PER_PAGE} hasImage={!!posts?.featured_media?.source_urll} />;
   }
 
+  if (error) {
+    return <ErrorMessage error={error.message} />
+  }
+
   return (
     <>
       <Grid className={styles["posts-container"]} container spacing={3}>
@@ -63,9 +66,7 @@ export const HomePage = () => {
 
       <Fade in={showAlert && windowWidth > BREAKPOINTS.DESKTOP} timeout={{ enter: 1000, exit: 1000 }} unmountOnExit>
         <div style={{ position: 'fixed', right: 45, bottom: 100 }}>
-          <Alert severity={"info"}>
-            <AlertTitle>Click on the post you want to read more..</AlertTitle>
-          </Alert>
+          <Alert type={"info"} message={"Click on the post you want to read more.."} />
         </div>
       </Fade>
 
