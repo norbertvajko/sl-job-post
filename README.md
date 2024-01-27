@@ -16,21 +16,22 @@ Before you begin, make sure you have the following installed on your machine:
 
 Follow these steps to install the necessary dependencies:
 
-1. **Install Node.js and npm:**
+1. **Install Node.js and npm:**  (in case you don't have it)
    - Download and install Node.js from [nodejs.org](https://nodejs.org/).
    - npm (Node Package Manager) is included with Node.js.
 
 2. **Clone the Repository:**
 
     git clone https://github.com/norbertvajko/sl-job-post
+   
     cd sl-job-post
 
-3. **Install dependencies**
+4. **Install dependencies**
 
    npm install
 
-4. **Run the application**
+5. **Run the application**
 
-   npm start 
+   npm run dev 
 
-5. **Have fun**   
+6. **Have fun!**   
